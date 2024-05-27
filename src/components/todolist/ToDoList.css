@@ -1,0 +1,12 @@
+.task {
+  width: 100%;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.btn {
+  display: flex;
+  justify-content: flex-end;
+}
