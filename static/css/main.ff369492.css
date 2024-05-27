@@ -1,0 +1,2 @@
+form{display:flex;flex-direction:column;gap:10px;justify-content:center;margin:0 auto;max-width:300px}input{height:25px}input,textarea{border-radius:5px}textarea{max-height:300px;resize:vertical}.task{border:1px solid #000;border-radius:5px;margin-bottom:10px;padding:5px 10px;width:100%}.btn{justify-content:flex-end}.app,.btn{display:flex}.app{background-color:#f3e7f1;height:100%;justify-content:space-between;margin:0 auto;max-width:1024px;padding:10px}.content{display:flex;flex-direction:column;gap:10px;width:65%}
+/*# sourceMappingURL=main.ff369492.css.map*/
