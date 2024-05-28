@@ -3,6 +3,8 @@ import Form from "./components/form/Form";
 import ToDoList from "./components/todolist/ToDoList";
 import "./App.css";
 import {useDispatch, useSelector} from "react-redux";
+import {getTodos} from "./components/asynkActions/todos";
+import {addItem, deleteTask, updateIsDone} from "./components/store/index";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,10 +25,8 @@ function App() {
           <h3>To-Do List. All tasks</h3>
           <ToDoList
             tdList={todoListState}
-            updateIsDone={(id) =>
-              dispatch({type: "UPDATE_IS_DONE", payload: {id}})
-            }
-            deleteTask={(id) => dispatch({type: "DELETE_ITEM", payload: {id}})}
+            updateIsDone={(id) => dispatch(updateIsDone(id))}
+            deleteTask={(id) => dispatch(deleteTask(id))}
           />
         </div>
 
@@ -34,10 +34,8 @@ function App() {
           <h3>To-Do tasks</h3>
           <ToDoList
             tdList={getTodoTasks()}
-            updateIsDone={(id) =>
-              dispatch({type: "UPDATE_IS_DONE", payload: {id}})
-            }
-            deleteTask={(id) => dispatch({type: "DELETE_ITEM", payload: {id}})}
+            updateIsDone={(id) => dispatch(updateIsDone(id))}
+            deleteTask={(id) => dispatch(deleteTask(id))}
           />
         </div>
 
@@ -45,17 +43,23 @@ function App() {
           <h3>Done tasks</h3>
           <ToDoList
             tdList={getDoneTasks()}
-            updateIsDone={(id) =>
-              dispatch({type: "UPDATE_IS_DONE", payload: {id}})
-            }
-            deleteTask={(id) => dispatch({type: "DELETE_ITEM", payload: {id}})}
+            updateIsDone={(id) => dispatch(updateIsDone(id))}
+            deleteTask={(id) => dispatch(deleteTask(id))}
           />
         </div>
       </div>
 
       <div className="aside">
         <h3>Add new task</h3>
-        <Form onSubmit={(el) => dispatch({type: "ADD_ITEM", payload: el})} />
+        <Form onSubmit={(el) => dispatch(addItem(el))} />
+        <br />
+        <h3>Add ToDos</h3>
+        <button
+          onClick={() => dispatch(getTodos())}
+          className="btn add-all-todos"
+        >
+          ADD_ALL_TODOS
+        </button>
       </div>
     </div>
   );
