@@ -11,11 +11,11 @@ function App() {
   const todoListState = useSelector((state) => state);
 
   function getTodoTasks() {
-    return todoListState.filter((task) => task.isDone === false);
+    return todoListState.filter((task) => !task.isDone);
   }
 
   function getDoneTasks() {
-    return todoListState.filter((task) => task.isDone === true);
+    return todoListState.filter((task) => task.isDone);
   }
 
   return (
