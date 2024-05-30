@@ -14,15 +14,15 @@ export const getAllTodos = () => {
   };
 };
 
-export const createTodoItem = (item) => {
+export const createTodoItem = (el) => {
   return (dispatch) => {
     fetch("https://665876835c36170526488f21.mockapi.io/todo-items", {
       method: "POST",
       headers: {"content-type": "application/json"},
 
       body: JSON.stringify({
-        title: item.title,
-        description: item.description,
+        title: el.title,
+        description: el.description,
         isDone: false,
       }),
     })
