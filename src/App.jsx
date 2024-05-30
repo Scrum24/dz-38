@@ -61,8 +61,6 @@ function App() {
       <div className="aside">
         <h3>Add new task</h3>
         <Form onSubmit={(el) => dispatch(createTodoItem(el))} />
-        <br />
-        <h3>Add ToDos</h3>
       </div>
     </div>
   );
