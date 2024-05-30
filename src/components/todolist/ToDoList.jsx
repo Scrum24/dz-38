@@ -5,7 +5,7 @@ function ToDoList({tdList, deleteTask, updateIsDone}) {
   return (
     <>
       {tdList.map((el) => (
-        <div key={el.id} onClick={() => updateIsDone(el.id)} className="task">
+        <div key={el.id} onClick={() => updateIsDone(el)} className="task">
           <div>
             <b>ID:</b> {el.id}
           </div>

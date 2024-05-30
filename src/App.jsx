@@ -3,12 +3,21 @@ import Form from "./components/form/Form";
 import ToDoList from "./components/todolist/ToDoList";
 import "./App.css";
 import {useDispatch, useSelector} from "react-redux";
-import {getTodos} from "./components/asynkActions/todos";
-import {addItem, deleteTask, updateIsDone} from "./components/store/index";
+import {
+  getAllTodos,
+  createTodoItem,
+  deleteTodoItem,
+  updateTodoItem,
+} from "./components/asynkActions/todos";
+import {useEffect} from "react";
 
 function App() {
   const dispatch = useDispatch();
   const todoListState = useSelector((state) => state);
+
+  useEffect(() => {
+    dispatch(getAllTodos());
+  }, []);
 
   function getTodoTasks() {
     return todoListState.filter((task) => !task.isDone);
@@ -25,8 +34,8 @@ function App() {
           <h3>To-Do List. All tasks</h3>
           <ToDoList
             tdList={todoListState}
-            updateIsDone={(id) => dispatch(updateIsDone(id))}
-            deleteTask={(id) => dispatch(deleteTask(id))}
+            updateIsDone={(el) => dispatch(updateTodoItem(el))}
+            deleteTask={(id) => dispatch(deleteTodoItem(id))}
           />
         </div>
 
@@ -34,8 +43,8 @@ function App() {
           <h3>To-Do tasks</h3>
           <ToDoList
             tdList={getTodoTasks()}
-            updateIsDone={(id) => dispatch(updateIsDone(id))}
-            deleteTask={(id) => dispatch(deleteTask(id))}
+            updateIsDone={(el) => dispatch(updateTodoItem(el))}
+            deleteTask={(id) => dispatch(deleteTodoItem(id))}
           />
         </div>
 
@@ -43,23 +52,15 @@ function App() {
           <h3>Done tasks</h3>
           <ToDoList
             tdList={getDoneTasks()}
-            updateIsDone={(id) => dispatch(updateIsDone(id))}
-            deleteTask={(id) => dispatch(deleteTask(id))}
+            updateIsDone={(el) => dispatch(updateTodoItem(el))}
+            deleteTask={(id) => dispatch(deleteTodoItem(id))}
           />
         </div>
       </div>
 
       <div className="aside">
         <h3>Add new task</h3>
-        <Form onSubmit={(el) => dispatch(addItem(el))} />
-        <br />
-        <h3>Add ToDos</h3>
-        <button
-          onClick={() => dispatch(getTodos())}
-          className="btn add-all-todos"
-        >
-          ADD_ALL_TODOS
-        </button>
+        <Form onSubmit={(el) => dispatch(createTodoItem(el))} />
       </div>
     </div>
   );
